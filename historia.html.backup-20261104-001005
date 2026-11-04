@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossa História ❤️</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="historia.css">
+
+  <script src="script.js" defer></script>
+  <script src="historia.js" defer></script>
+</head>
+<body>
+  <div id="coracoes" aria-hidden="true"></div>
+
+  <main class="historia-pagina">
+    <header class="historia-topo">
+      <p class="etiqueta">CAPÍTULO 01 · NOSSA HISTÓRIA</p>
+
+      <h1>Como tudo <em>começou...</em></h1>
+
+      <p>
+        Toda história tem um começo.
+        A minha parte favorita começou
+        quando você apareceu. 💗
+      </p>
+    </header>
+
+    <section class="linha-do-tempo">
+
+      <article class="momento">
+        <div class="moldura">
+          <img
+            src="imagens/encontro.jpg"
+            alt="Nosso primeiro encontro"
+          >
+          <span class="placeholder">
+            💞
+            <small>Nosso primeiro encontro</small>
+          </span>
+        </div>
+
+        <div class="momento-texto">
+          <span class="numero">01 · O COMEÇO</span>
+          <h2>Quando nos conhecemos</h2>
+          <p>
+            Naquele momento, eu ainda não imaginava
+            que você se tornaria alguém tão especial
+            na minha vida.
+          </p>
+        </div>
+      </article>
+
+      <article class="momento">
+        <div class="moldura">
+          <img
+            src="imagens/sorriso.jpg"
+            alt="Um sorriso inesquecível"
+          >
+          <span class="placeholder">
+            ✨
+            <small>Um sorriso inesquecível</small>
+          </span>
+        </div>
+
+        <div class="momento-texto">
+          <span class="numero">02 · O ENCANTO</span>
+          <h2>Seu sorriso</h2>
+          <p>
+            Foi nos pequenos detalhes que descobri
+            o quanto é bom ter você por perto.
+          </p>
+        </div>
+      </article>
+
+      <article class="momento">
+        <div class="moldura">
+          <img
+            src="imagens/momento.jpg"
+            alt="Uma lembrança nossa"
+          >
+          <span class="placeholder">
+            📷
+            <small>Uma lembrança nossa</small>
+          </span>
+        </div>
+
+        <div class="momento-texto">
+          <span class="numero">03 · NÓS DOIS</span>
+          <h2>Nossas lembranças</h2>
+          <p>
+            Entre conversas, risadas e abraços,
+            fomos construindo uma história só nossa.
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="proximo">
+      <p class="etiqueta">CAPÍTULO 02 · NOSSO AMOR</p>
+
+      <h2>E essa história continua...</h2>
+
+      <p>
+        Agora quero te mostrar dez motivos
+        pelos quais você é tão especial para mim.
+      </p>
+
+      <a href="motivos.html" class="botao">
+        Iniciar nosso filme ❤️
+      </a>
+    </section>
+
+    <a href="index.html" class="voltar">
+      ← Voltar ao início
+    </a>
+  </main>
+</body>
+</html>

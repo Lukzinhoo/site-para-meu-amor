@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nossa Historia ❤️</title>
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #18091c;
+}
+#conteudo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+</style>
+</head>
+<body>
+
+<iframe id="conteudo" src="inicio.html" title="Nossa Historia"></iframe>
+
+<audio id="musica" src="musicas/temari.mp3" loop preload="auto"></audio>
+
+<script>
+const frame = document.getElementById("conteudo");
+const musica = document.getElementById("musica");
+
+musica.volume = 0.5;
+
+function tocar() {
+  if (musica.paused) {
+    musica.play().catch(() => {});
+  }
+}
+
+function navegar(destino) {
+  if (!destino) return;
+
+  const paginas = [
+    "index.html",
+    "historia.html",
+    "motivos.html",
+    "jogo.html"
+  ];
+
+  const nome = destino.split(/[?#]/)[0].split("/").pop();
+
+  if (!paginas.includes(nome)) return;
+
+  tocar();
+  frame.src = nome;
+}
+
+window.navegar = navegar;
+
+window.addEventListener("pointerdown", tocar);
+window.addEventListener("keydown", tocar);
+
+frame.addEventListener("load", () => {
+  try {
+    const doc = frame.contentDocument;
+
+    if (!doc) return;
+
+    doc.querySelectorAll("audio").forEach(audio => {
+      audio.pause();
+      audio.muted = true;
+      audio.autoplay = false;
+    });
+
+    doc.addEventListener("click", evento => {
+      const link = evento.target.closest("a[href]");
+
+      if (!link) return;
+
+      const destino = link.getAttribute("href");
+
+      if (!destino) return;
+
+      const nome = destino.split(/[?#]/)[0].split("/").pop();
+
+      if (["index.html", "historia.html", "motivos.html", "jogo.html"].includes(nome)) {
+        evento.preventDefault();
+        navegar(nome);
+      }
+    }, true);
+
+    doc.addEventListener("pointerdown", tocar);
+    doc.addEventListener("keydown", tocar);
+
+  } catch (erro) {
+    console.warn("Nao foi possivel configurar a pagina:", erro);
+  }
+});
+</script>
+</body>
+</html>
+

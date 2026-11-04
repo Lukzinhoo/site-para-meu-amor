@@ -1,0 +1,1065 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Minha Bailarina ❤️</title>
+
+  <link rel="stylesheet" href="historia.css">
+  <script src="navegacao.js" defer></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(
+        135deg,
+        #210c23,
+        #300f2c,
+        #220b25
+      );
+      color: #fff0f6;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #ffd0e7;
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(100% - 32px, 850px);
+      margin: 0 auto;
+      padding: 40px 0 90px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* CABEÇALHO */
+
+    .cabecalho {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .capitulo {
+      color: #f2a1c4;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2.5px;
+    }
+
+    .cabecalho h1 {
+      margin: 15px 0;
+      font-size: clamp(38px, 6vw, 58px);
+      line-height: 1.15;
+    }
+
+    .cabecalho h1 span {
+      display: block;
+      margin-top: 10px;
+      color: #efa0c5;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    .introducao {
+      color: #e6cbd9;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* SEÇÕES */
+
+    .etapa {
+      color: #f2a1c4;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .cartao,
+    .secao-potinho,
+    .secao-carta {
+      border: 1px solid rgba(255, 190, 220, .2);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .035);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .1);
+    }
+
+    /* BOTÕES */
+
+    .botao-jogo,
+    .botao-carta {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 30px;
+      background: #db73a7;
+      color: white;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+
+    .botao-jogo:hover,
+    .botao-carta:hover {
+      background: #ee8ebc;
+      transform: translateY(-2px);
+    }
+
+    /* POTINHO DO AMOR */
+
+    .secao-potinho {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .secao-potinho h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(26px, 4vw, 36px);
+      color: #f4acd0;
+      margin: 18px 0;
+    }
+
+    .descricao-potinho {
+      max-width: 550px;
+      margin: 0 auto;
+      color: #e6cbd9;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .area-potinho {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      margin: 15px auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      isolation: isolate;
+    }
+
+    .potinho {
+      position: relative;
+      display: block;
+      width: 220px;
+      height: 230px;
+      margin: 0 0 15px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      z-index: 2;
+      transform-origin: center bottom;
+      transition: transform .3s ease;
+    }
+
+    .potinho:hover {
+      transform: rotate(-3deg) scale(1.04);
+    }
+
+    .potinho.animando {
+      animation: balancarPote .65s ease;
+    }
+
+    .tampa-potinho {
+      position: absolute;
+      top: 0;
+      left: 25px;
+      width: 170px;
+      height: 35px;
+      border-radius: 12px 12px 5px 5px;
+      background: linear-gradient(
+        90deg,
+        #a84077,
+        #f4a3c9,
+        #a84077
+      );
+      box-shadow: 0 5px 10px #0003;
+      z-index: 5;
+      transform-origin: 20px center;
+      transition: transform .5s ease;
+    }
+
+    .potinho.aberto .tampa-potinho {
+      transform: translate(-24px, -38px) rotate(-18deg);
+    }
+
+    .vidro-potinho {
+      position: absolute;
+      left: 15px;
+      bottom: 0;
+      width: 190px;
+      height: 205px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      border: 4px solid #f5bbd7;
+      border-radius: 22px 22px 48px 48px;
+      background: linear-gradient(
+        130deg,
+        #ffffff40,
+        #f5a4cb20,
+        #ffffff20
+      );
+      box-shadow:
+        inset 8px 0 15px #ffffff30,
+        0 15px 30px #0004;
+    }
+
+    .coracoes-potinho {
+      font-size: 30px;
+      line-height: 1.7;
+      letter-spacing: 2px;
+    }
+
+    .rotulo-potinho {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 9px;
+      background: #fff0f5;
+      color: #a33b73;
+      font-family: Georgia, serif;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    @keyframes balancarPote {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+      75% { transform: rotate(-3deg); }
+    }
+
+    /* BILHETE QUE SAI E ABRE ACIMA DO POTE */
+
+    .bilhete-flutuante {
+      position: absolute;
+      left: 50%;
+      bottom: 150px;
+      width: min(90%, 370px);
+      min-height: 145px;
+      padding: 25px 22px;
+      border: 1px solid #e8b5ca;
+      border-radius: 10px;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 30px,
+          #e7cbd830 31px
+        ),
+        #fff0f5;
+      color: #913b69;
+      font-family: Georgia, serif;
+      font-size: 17px;
+      line-height: 1.6;
+      box-shadow: 0 15px 40px #0004;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 4;
+      pointer-events: none;
+      transform:
+        translate(-50%, 0)
+        scale(.12, .15)
+        rotate(-8deg);
+      transform-origin: center bottom;
+    }
+
+    .bilhete-flutuante::before {
+      content: "💌";
+      position: absolute;
+      top: -17px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 25px;
+    }
+
+    .bilhete-flutuante.saindo {
+      visibility: visible;
+      animation: sairEAbrir 1.5s ease forwards;
+    }
+
+    .bilhete-flutuante.aberto {
+      visibility: visible;
+      opacity: 1;
+      transform:
+        translate(-50%, -185px)
+        scale(1)
+        rotate(-2deg);
+    }
+
+    .bilhete-flutuante.guardando {
+      visibility: visible;
+      animation: guardarBilhete .65s ease forwards;
+    }
+
+    .texto-bilhete {
+      display: block;
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+
+    .bilhete-flutuante.aberto .texto-bilhete {
+      opacity: 1;
+    }
+
+    @keyframes sairEAbrir {
+      0% {
+        opacity: 0;
+        transform:
+          translate(-50%, 0)
+          scale(.12, .15)
+          rotate(-8deg);
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      45% {
+        opacity: 1;
+        transform:
+          translate(-50%, -130px)
+          scale(.18, .3)
+          rotate(12deg);
+      }
+
+      75% {
+        opacity: 1;
+        transform:
+          translate(-50%, -195px)
+          scale(.8, .85)
+          rotate(-4deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform:
+          translate(-50%, -185px)
+          scale(1)
+          rotate(-2deg);
+      }
+    }
+
+    @keyframes guardarBilhete {
+      from {
+        opacity: 1;
+        transform:
+          translate(-50%, -185px)
+          scale(1)
+          rotate(-2deg);
+      }
+
+      65% {
+        opacity: 1;
+        transform:
+          translate(-50%, -100px)
+          scale(.18, .3)
+          rotate(8deg);
+      }
+
+      to {
+        opacity: 0;
+        transform:
+          translate(-50%, 0)
+          scale(.12, .15)
+          rotate(0);
+      }
+    }
+
+    .instrucao-potinho {
+      color: #f2a1c4;
+      font-size: 13px;
+      margin: 15px 0 0;
+    }
+
+    .contador-bilhetes {
+      color: #d9a9c4;
+      font-size: 12px;
+      margin-top: 16px;
+    }
+
+    /* CARTINHA SURPRESA */
+
+    .secao-carta {
+      margin-top: 55px;
+      padding: 38px 20px;
+      text-align: center;
+    }
+
+    .secao-carta h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(25px, 4vw, 36px);
+      color: #f4acd0;
+      margin: 15px 0;
+    }
+
+    .secao-carta .descricao {
+      color: #e6cbd9;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ENVELOPE */
+
+    .envelope {
+      position: relative;
+      display: block;
+      width: 250px;
+      height: 155px;
+      margin: 38px auto 28px;
+      padding: 0;
+      border: 0;
+      background: #bb6293;
+      border-radius: 9px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .25);
+      cursor: pointer;
+      transition: transform .4s ease;
+    }
+
+    .envelope:hover {
+      transform: translateY(-7px);
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 125px solid transparent;
+      border-right: 125px solid transparent;
+      border-top: 82px solid #f1acd0;
+      z-index: 2;
+      transform-origin: top;
+      transition: transform .7s ease;
+    }
+
+    .envelope::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        145deg,
+        transparent 49%,
+        #d987b5 50%
+      );
+      clip-path: polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+      );
+      border-radius: 9px;
+      z-index: 1;
+    }
+
+    .selo {
+      position: absolute;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      font-size: 28px;
+    }
+
+    .envelope.aberto::before {
+      transform: rotateX(180deg);
+    }
+
+    /* CONTEÚDO DA CARTA */
+
+    .carta {
+      display: none;
+      max-width: 650px;
+      margin: 30px auto 0;
+      padding: 30px;
+      border-radius: 18px;
+      background: #fff1f6;
+      color: #57283e;
+      text-align: left;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .2);
+      animation: aparecer .8s ease both;
+    }
+
+    .carta.visivel {
+      display: block;
+    }
+
+    .carta h3 {
+      font-family: Georgia, serif;
+      color: #a93f77;
+      font-size: 27px;
+      text-align: center;
+      margin: 0 0 25px;
+    }
+
+    .carta p {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .assinatura {
+      text-align: center;
+      color: #a93f77;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 28px;
+    }
+
+    .fechar-carta {
+      display: block;
+      margin: 25px auto 0;
+      padding: 11px 22px;
+      background: #b95e91;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .fechar-carta:hover {
+      background: #d277a6;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* QUEBRA-CABEÇA FINAL */
+
+    .cartao {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 28px;
+      margin-top: 55px;
+      padding: 20px;
+    }
+
+    .imagem-jogo {
+      display: block;
+      overflow: hidden;
+      border-radius: 16px;
+      background: linear-gradient(
+        135deg,
+        #783456,
+        #b45485
+      );
+      text-decoration: none;
+      transition: transform .3s ease;
+    }
+
+    .imagem-jogo:hover {
+      transform: translateY(-5px);
+    }
+
+    .imagem-jogo img {
+      display: block;
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+    }
+
+    .conteudo h2 {
+      margin: 18px 0;
+      font-size: clamp(23px, 3vw, 30px);
+      line-height: 1.3;
+    }
+
+    .conteudo p {
+      color: #e4cbd9;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 650px) {
+      .container {
+        padding-top: 30px;
+      }
+
+      .cartao {
+        grid-template-columns: 1fr;
+      }
+
+      .imagem-jogo img {
+        height: auto;
+        aspect-ratio: 1.15;
+      }
+
+      .conteudo {
+        padding: 10px 5px;
+      }
+
+      .secao-potinho,
+      .secao-carta {
+        padding: 30px 15px;
+      }
+
+      .area-potinho {
+        height: 440px;
+      }
+
+      .bilhete-flutuante {
+        width: min(94%, 330px);
+        padding: 22px 16px;
+        font-size: 15px;
+      }
+
+      .carta {
+        padding: 23px 20px;
+      }
+
+      .carta p {
+        font-size: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- TÍTULO PRINCIPAL -->
+
+    <header class="cabecalho">
+
+      <div class="capitulo">
+        CAPÍTULO 01 · NOSSA HISTÓRIA
+      </div>
+
+      <h1>
+        Minha bailarina,
+        <span>minha obra de arte 🩰❤️</span>
+      </h1>
+
+      <p class="introducao">
+        Toda história tem um começo.
+        A minha parte favorita começou
+        quando você apareceu. 💗
+      </p>
+
+    </header>
+
+    <!-- 01: POTINHO DOS MOTIVOS -->
+
+    <section class="secao-potinho">
+
+      <div class="etapa">
+        01 · PEQUENOS MOTIVOS, UM AMOR ENORME
+      </div>
+
+      <h2>Um potinho cheio de amor 💗</h2>
+
+      <p class="descricao-potinho">
+        Existem tantos motivos pelos quais eu te amo...
+        Guardei alguns deles aqui, especialmente
+        para você. Clique no potinho e descubra
+        um pedacinho do meu coração. ❤️
+      </p>
+
+      <div class="area-potinho">
+
+        <!-- O PAPEL ABRE ACIMA DO POTE -->
+
+        <div
+          class="bilhete-flutuante"
+          id="bilheteFlutuante"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="texto-bilhete" id="textoBilhete"></span>
+        </div>
+
+        <!-- POTINHO CLICÁVEL -->
+
+        <button
+          class="potinho"
+          id="potinho"
+          type="button"
+          aria-label="Retirar um bilhetinho de amor"
+        >
+          <span class="tampa-potinho"></span>
+
+          <span class="vidro-potinho">
+
+            <span class="coracoes-potinho">
+              💗 💕 ❤️ 💖
+            </span>
+
+            <span class="rotulo-potinho">
+              Motivos pelos quais te amo
+            </span>
+
+          </span>
+        </button>
+
+      </div>
+
+      <p class="instrucao-potinho">
+        ✨ Toque no potinho para tirar um bilhetinho ✨
+      </p>
+
+      <p class="contador-bilhetes" id="contadorBilhetes">
+        0 de 20 bilhetinhos descobertos
+      </p>
+
+    </section>
+
+    <!-- 02: CARTINHA SURPRESA -->
+
+    <section class="secao-carta">
+
+      <div class="etapa">
+        02 · UM PEDACINHO DO MEU CORAÇÃO
+      </div>
+
+      <h2>Uma cartinha para minha bailarina 💌</h2>
+
+      <p class="descricao">
+        Tem algumas coisas que eu queria te dizer...
+        Preparei essas palavras especialmente
+        para você. ❤️
+      </p>
+
+      <button
+        type="button"
+        class="envelope"
+        id="envelope"
+        aria-label="Abrir cartinha"
+        aria-controls="carta"
+        aria-expanded="false"
+      >
+        <span class="selo">❤️</span>
+      </button>
+
+      <button
+        type="button"
+        class="botao-carta"
+        id="botaoAbrir"
+      >
+        Abrir minha cartinha 💌
+      </button>
+
+      <article class="carta" id="carta">
+
+        <h3>Minha Princesa ❤️</h3>
+
+        <p>
+          Pode ser que eu nunca consiga explicar
+          toda a beleza e o amor que vejo em você.
+          Mas, quando vejo você dançando, fazendo
+          o que ama, fico muito feliz.
+          Seus olhinhos ficam brilhando quando
+          você está dançando, e isso é algo
+          que admiro muito em você.
+        </p>
+
+        <p>
+          Às vezes, você pensa em desistir,
+          mas eu sempre vou ficar no seu pé
+          para que continue, porque sei
+          o quanto você ama tudo isso
+          e sei que faz tudo por amor.
+        </p>
+
+        <p>
+          Então, não desista disso nunca,
+          meu amor. Continue dançando,
+          realizando seus sonhos e fazendo
+          aquilo que faz seus olhinhos brilharem.
+        </p>
+
+        <div class="assinatura">
+          Eu te amo muito, minha bailarina! ❤️🩰
+        </div>
+
+        <button
+          type="button"
+          class="fechar-carta"
+          id="fecharCarta"
+        >
+          Fechar cartinha ❤️
+        </button>
+
+      </article>
+
+    </section>
+
+    <!-- 03: QUEBRA-CABEÇA FINAL -->
+
+    <section class="cartao">
+
+      <a
+        href="jogo.html"
+        class="imagem-jogo"
+        aria-label="Abrir quebra-cabeça"
+      >
+        <img
+          src="imagens/ilustracao-quebra-cabeca.png"
+          alt="Quebra-cabeça romântico"
+        >
+      </a>
+
+      <div class="conteudo">
+
+        <div class="etapa">
+          03 · UMA SURPRESA ESPECIAL
+        </div>
+
+        <h2>Uma última surpresa para você 🧩❤️</h2>
+
+        <p>
+          Depois de descobrir alguns dos motivos
+          pelos quais eu te amo e ler um pedacinho
+          do meu coração, chegou a hora de
+          montar uma surpresa especial.
+          Cada peça guarda um pouquinho da beleza,
+          da delicadeza e do encanto que vejo
+          em você. 💗
+        </p>
+
+        <a href="jogo.html" class="botao-jogo">
+          Montar minha surpresa 🧩
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    /* CARTINHA SURPRESA */
+
+    const carta = document.getElementById("carta");
+    const envelope = document.getElementById("envelope");
+    const botaoAbrir = document.getElementById("botaoAbrir");
+    const fecharCartaBotao =
+      document.getElementById("fecharCarta");
+
+    let tempoAbertura;
+    let cartaAbrindo = false;
+
+    function abrirCarta() {
+      if (
+        carta.classList.contains("visivel") ||
+        cartaAbrindo
+      ) {
+        return;
+      }
+
+      cartaAbrindo = true;
+      envelope.classList.add("aberto");
+      envelope.setAttribute("aria-expanded", "true");
+
+      clearTimeout(tempoAbertura);
+
+      tempoAbertura = setTimeout(() => {
+        carta.classList.add("visivel");
+        botaoAbrir.style.display = "none";
+        cartaAbrindo = false;
+
+        carta.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 500);
+    }
+
+    function fecharCarta() {
+      clearTimeout(tempoAbertura);
+      cartaAbrindo = false;
+
+      carta.classList.remove("visivel");
+      envelope.classList.remove("aberto");
+      envelope.setAttribute("aria-expanded", "false");
+
+      botaoAbrir.style.display = "inline-block";
+    }
+
+    envelope.addEventListener("click", abrirCarta);
+    botaoAbrir.addEventListener("click", abrirCarta);
+    fecharCartaBotao.addEventListener("click", fecharCarta);
+
+    /* POTINHO DOS MOTIVOS */
+
+    const motivos = [
+      "Porque o seu sorriso deixa meus dias mais bonitos. ❤️",
+      "Porque seus olhinhos brilhando são uma das coisas mais lindas que já vi. 💗",
+      "Porque amo ver você fazendo aquilo que ama. 🩰",
+      "Porque você transforma momentos simples em lembranças especiais. 💕",
+      "Porque sua felicidade também é a minha felicidade. ❤️",
+      "Porque admiro sua dedicação e sua força. 🌷",
+      "Porque até nos dias difíceis você continua sendo especial para mim. 💖",
+      "Porque amo seu jeitinho de ser. 💗",
+      "Porque você me faz sorrir sem nem perceber. 🥹",
+      "Porque sou seu maior fã, dentro e fora dos palcos. 🩰",
+      "Porque quero estar ao seu lado em cada conquista. ❤️",
+      "Porque seu abraço é um dos meus lugares favoritos. 💕",
+      "Porque admiro a forma como você corre atrás dos seus sonhos. ✨",
+      "Porque você é minha pessoa favorita. 💗",
+      "Porque amo ouvir você falando sobre o que te faz feliz. 🌸",
+      "Porque você merece todo o amor e carinho do mundo. ❤️",
+      "Porque quero aplaudir cada uma das suas vitórias. 🩰",
+      "Porque cada momento com você tem um significado especial. 💖",
+      "Porque você faz meu coração ficar quentinho. 💕",
+      "Porque, entre tantas pessoas no mundo, meu coração escolheu você. ❤️"
+    ];
+
+    const potinho = document.getElementById("potinho");
+    const bilhete = document.getElementById("bilheteFlutuante");
+    const textoBilhete = document.getElementById("textoBilhete");
+    const contador = document.getElementById("contadorBilhetes");
+
+    const movimentoReduzido = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    let motivosRestantes = motivos.map((_, i) => i);
+    let motivosDescobertos = 0;
+    let animacaoEmAndamento = false;
+    let bilheteAberto = false;
+
+    const esperar = ms => new Promise(
+      resolve => setTimeout(resolve, ms)
+    );
+
+    function atualizarContador() {
+      contador.textContent =
+        motivosDescobertos + " de " +
+        motivos.length + " bilhetinhos descobertos";
+
+      if (motivosRestantes.length === 0) {
+        contador.textContent =
+          "Você descobriu todos os bilhetinhos! ❤️ " +
+          "Toque novamente no potinho para recomeçar.";
+      }
+    }
+
+    async function sortearMotivo() {
+      if (animacaoEmAndamento) return;
+
+      animacaoEmAndamento = true;
+      potinho.disabled = true;
+
+      const reduzido = movimentoReduzido.matches;
+
+      // Guarda o bilhete anterior dentro do pote.
+      if (bilheteAberto) {
+        bilhete.classList.remove("aberto");
+        bilhete.classList.add("guardando");
+
+        if (!reduzido) {
+          await esperar(650);
+        }
+
+        bilhete.classList.remove("guardando");
+        bilheteAberto = false;
+      }
+
+      if (motivosRestantes.length === 0) {
+        motivosRestantes = motivos.map((_, i) => i);
+        motivosDescobertos = 0;
+      }
+
+      const sorteado = Math.floor(
+        Math.random() * motivosRestantes.length
+      );
+
+      const indice = motivosRestantes.splice(
+        sorteado, 1
+      )[0];
+
+      motivosDescobertos++;
+
+      textoBilhete.textContent = "❤️ " + motivos[indice];
+
+      // Abre a tampa do potinho.
+      potinho.classList.add("aberto", "animando");
+
+      if (!reduzido) {
+        await esperar(350);
+      }
+
+      // O papel sai do pote e abre acima da tampa.
+      bilhete.classList.remove("saindo", "aberto");
+      void bilhete.offsetWidth;
+      bilhete.classList.add("saindo");
+
+      if (!reduzido) {
+        await esperar(1500);
+      }
+
+      bilhete.classList.remove("saindo");
+      bilhete.classList.add("aberto");
+
+      bilheteAberto = true;
+      atualizarContador();
+
+      potinho.classList.remove("aberto", "animando");
+
+      animacaoEmAndamento = false;
+      potinho.disabled = false;
+    }
+
+    potinho.addEventListener("click", sortearMotivo);
+  </script>
+
+</body>
+</html>

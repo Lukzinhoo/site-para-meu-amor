@@ -1,0 +1,320 @@
+﻿* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #13091d, #32112e, #17091c);
+}
+
+button, a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.escondido {
+  display: none !important;
+}
+
+.abertura {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.cartao {
+  width: min(100%, 640px);
+  padding: 55px 30px;
+  border-radius: 28px;
+  background: rgba(51, 21, 52, .84);
+  border: 1px solid #70435e;
+  box-shadow: 0 20px 70px #0005;
+}
+
+.icone {
+  font-size: 52px;
+}
+
+.etiqueta {
+  color: #ffaacb;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.cartao h1 {
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1.2;
+}
+
+.cartao em {
+  color: #ff9ec9;
+}
+
+.cartao p {
+  line-height: 1.8;
+  color: #f0d7e5;
+}
+
+.cartao button {
+  margin-top: 25px;
+  padding: 16px 30px;
+  border: 0;
+  border-radius: 35px;
+  background: linear-gradient(90deg, #e86da5, #ad4b88);
+  color: #fff;
+  font-weight: bold;
+}
+
+.dica {
+  font-size: 12px;
+}
+
+.mural {
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow: hidden;
+}
+
+.cabecalho {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 24px 16px;
+  max-width: 700px;
+  margin: auto;
+  text-shadow: 0 3px 12px #000;
+}
+
+.cabecalho h2 {
+  font-size: clamp(24px, 4vw, 40px);
+}
+
+#contador {
+  color: #ff9ec9;
+}
+
+.fotos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.polaroid {
+  position: absolute;
+  width: clamp(115px, 17vw, 230px);
+  padding: 7px 7px 23px;
+  border-radius: 8px;
+  background: #fff3f8;
+  box-shadow: 0 15px 35px #0008;
+  transform: rotate(var(--rot, 0deg));
+  animation: surgir .8s ease both;
+}
+
+.polaroid img,
+.polaroid video {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+  background: #29152a;
+}
+
+.polaroid span {
+  display: block;
+  color: #7b4a64;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: scale(.3) rotate(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(var(--rot, 0deg));
+  }
+}
+
+.controles {
+  position: fixed;
+  z-index: 20;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: max-content;
+  max-width: 95%;
+}
+
+.controles button,
+.controles a {
+  border: 1px solid #a86891;
+  border-radius: 30px;
+  background: #421d3e;
+  color: white;
+  padding: 12px 18px;
+  text-decoration: none;
+}
+
+.creditos {
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+  background: #0d0713;
+}
+
+.fotos-creditos {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.coluna {
+  width: 23%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.coluna img {
+  width: 100%;
+  height: 27%;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: .65;
+}
+
+.sombra {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #0d0713dd 30%,
+    #0d0713dd 70%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.texto-creditos {
+  position: absolute;
+  z-index: 3;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(580px, 65%);
+  text-align: center;
+}
+
+.texto-creditos.rolando {
+  animation: subir 90s linear forwards;
+}
+
+@keyframes subir {
+  from {
+    top: 100%;
+  }
+  to {
+    top: calc(-1 * var(--altura, 2200px));
+  }
+}
+
+.texto-creditos h1 {
+  font-size: clamp(30px, 5vw, 55px);
+  color: #ffb3d5;
+  margin-bottom: 80px;
+}
+
+.texto-creditos h2 {
+  margin-bottom: 80px;
+}
+
+.declaracao {
+  margin-top: 120px;
+}
+
+.declaracao p {
+  line-height: 2;
+  font-size: clamp(16px, 2vw, 20px);
+  margin-bottom: 55px;
+}
+
+.amor {
+  color: #ff9ec9;
+  font-size: 40px;
+}
+
+.continua {
+  letter-spacing: 4px;
+}
+
+.aviso-audio {
+  position: fixed;
+  z-index: 100;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(95%, 430px);
+  padding: 15px;
+  text-align: center;
+  border-radius: 15px;
+  background: #502346;
+  box-shadow: 0 10px 35px #0009;
+}
+
+.aviso-audio button {
+  border: none;
+  border-radius: 20px;
+  background: #f39ac6;
+  padding: 10px 15px;
+}
+
+@media (max-width: 650px) {
+  .polaroid {
+    width: 34vw;
+  }
+
+  .coluna {
+    width: 25%;
+    padding: 5px;
+  }
+
+  .texto-creditos {
+    width: 68%;
+  }
+
+  .texto-creditos h2 {
+    font-size: 19px;
+  }
+
+  .declaracao p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .controles button,
+  .controles a {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

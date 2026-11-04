@@ -1,0 +1,276 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossa História ❤️</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="historia.css">
+
+  <script src="script.js" defer></script>
+  <script src="historia.js" defer></script>
+<script src="navegacao.js"></script></head>
+<body>
+  <div id="coracoes" aria-hidden="true"></div>
+
+  <main class="historia-pagina">
+    <header class="historia-topo">
+      <p class="etiqueta">CAPÍTULO 01 · NOSSA HISTÓRIA</p>
+
+      <h1>Como tudo <em>começou...</em></h1>
+
+      <p>
+        Toda história tem um começo.
+        A minha parte favorita começou
+        quando você apareceu. 💗
+      </p>
+    </header>
+
+    <section class="linha-do-tempo">
+
+      <article class="momento">
+        <div class="moldura">
+          <img
+            src="imagens/encontro.jpg"
+            alt="Monte nossa surpresa"
+          >
+          <span class="placeholder">
+            💞
+            <small>Monte nossa surpresa</small>
+          </span>
+        </div>
+
+        <div class="momento-texto">
+          <span class="numero">01 · O COMEÇO</span>
+          <h2>Quando nos conhecemos</h2>
+          <p>
+            Naquele momento, eu ainda não imaginava
+            que você se tornaria alguém tão especial
+            na minha vida.
+          </p>
+        </div>
+      </article>
+
+      <article class="momento">
+        <div class="moldura">
+          <img
+            src="imagens/sorriso.jpg"
+            alt="Um sorriso inesquecível"
+          >
+          <span class="placeholder">
+            ✨
+            <small>Um sorriso inesquecível</small>
+          </span>
+        </div>
+
+        <div class="momento-texto">
+          <span class="numero">02 · O ENCANTO</span>
+          <h2>Seu sorriso</h2>
+          <p>
+            Foi nos pequenos detalhes que descobri
+            o quanto é bom ter você por perto.
+          </p>
+        </div>
+      </article>
+
+      <article class="momento">
+        <div class="moldura">
+          <img
+            src="imagens/momento.jpg"
+            alt="Uma lembrança nossa"
+          >
+          <span class="placeholder">
+            📷
+            <small>Uma lembrança nossa</small>
+          </span>
+        </div>
+
+        <div class="momento-texto">
+          <span class="numero">03 · NÓS DOIS</span>
+          <h2>Nossas lembranças</h2>
+          <p>
+            Entre conversas, risadas e abraços,
+            fomos construindo uma história só nossa.
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="proximo">
+      <p class="etiqueta">CAPÍTULO 02 · NOSSO AMOR</p>
+
+      <h2>E essa história continua...</h2>
+
+      <p>
+        Agora quero te mostrar dez motivos
+        pelos quais você é tão especial para mim.
+      </p>
+
+      <a href="motivos.html" class="botao">
+        Iniciar nosso filme ❤️
+      </a>
+    </section>
+
+    <a href="index.html" class="voltar">
+      ← Voltar ao início
+    </a>
+  </main>
+<script id="abrir-quebra-cabeca">
+document.addEventListener("DOMContentLoaded", function () {
+
+  const elementos = document.querySelectorAll(
+    "div, section, article"
+  );
+
+  let quadrado = null;
+
+  for (const elemento of elementos) {
+
+    const texto = elemento.textContent.trim();
+
+    if (
+      texto.includes("Monte nossa surpresa") &&
+      texto.length < 160
+    ) {
+      quadrado = elemento;
+    }
+  }
+
+  if (!quadrado) {
+    console.warn("Quadrado do primeiro encontro nao encontrado.");
+    return;
+  }
+
+  quadrado.classList.add("quadrado-jogo");
+  quadrado.setAttribute("role", "link");
+  quadrado.setAttribute("tabindex", "0");
+  quadrado.setAttribute(
+    "aria-label",
+    "Abrir quebra-cabeca romantico"
+  );
+
+  quadrado.addEventListener("click", function () {
+    window.location.href = "jogo.html";
+  });
+
+  quadrado.addEventListener("keydown", function (evento) {
+    if (evento.key === "Enter" || evento.key === " ") {
+      evento.preventDefault();
+      window.location.href = "jogo.html";
+    }
+  });
+
+});
+</script>
+<script id="visual-quebra-cabeca">
+document.addEventListener("DOMContentLoaded", () => {
+  const elementos = [...document.querySelectorAll(
+    ".quadrado-jogo, div, section, article"
+  )];
+
+  const quadrado = elementos.find(el =>
+    el.classList.contains("quadrado-jogo")
+  ) || elementos.reverse().find(el =>
+    el.textContent.trim() === "Monte nossa surpresa"
+  )?.parentElement;
+
+  if (!quadrado) return;
+
+  // Mantém o clique no jogo.
+  quadrado.style.cursor = "pointer";
+  quadrado.addEventListener("click", () => {
+    window.location.href = "jogo.html";
+  });
+
+  const textos = [...quadrado.querySelectorAll("*")];
+  const texto = textos.find(el =>
+    el.children.length === 0 &&
+    el.textContent.trim() === "Monte nossa surpresa"
+  );
+
+  if (!texto) return;
+
+  // Adiciona o ícone e a instrução.
+  const icone = document.createElement("div");
+  icone.textContent = "🧩";
+  icone.style.fontSize = "55px";
+  icone.style.marginBottom = "12px";
+
+  texto.before(icone);
+
+  const dica = document.createElement("p");
+  dica.textContent = "Clique aqui para montar uma foto especial ❤️";
+  dica.style.fontSize = "12px";
+  dica.style.marginTop = "12px";
+  dica.style.color = "#ffe0ef";
+
+  texto.after(dica);
+});
+</script>
+<script id="imagem-quebra-cabeca">
+document.addEventListener("DOMContentLoaded", () => {
+  const elementos = [...document.querySelectorAll("*")];
+
+  const titulo = elementos.find(el =>
+    el.children.length === 0 &&
+    el.textContent.trim() === "Monte nossa surpresa"
+  );
+
+  if (!titulo) {
+    console.warn("Texto Monte nossa surpresa nao encontrado.");
+    return;
+  }
+
+  // Encontrar o quadrado rosa existente
+  const quadrado = titulo.closest(".quadrado-jogo") ||
+    titulo.parentElement;
+
+  if (!quadrado) return;
+
+  // Remover apenas os emojis decorativos antigos
+  const anteriores = [...quadrado.querySelectorAll("*")];
+
+  anteriores.forEach(el => {
+    if (el.children.length === 0) {
+      const texto = el.textContent.trim();
+      if (
+        texto === "🧩" ||
+        texto === "💕" ||
+        texto === "💞" ||
+        texto === "💗"
+      ) {
+        el.remove();
+      }
+    }
+  });
+
+  // Evitar imagem duplicada
+  if (!quadrado.querySelector(".imagem-puzzle-amor")) {
+    const imagem = document.createElement("img");
+
+    imagem.src = "imagens/ilustracao-quebra-cabeca.png";
+    imagem.alt = "Quebra-cabeca romantico com coracoes";
+    imagem.className = "imagem-puzzle-amor";
+
+    titulo.before(imagem);
+  }
+
+  // Manter o quadrado clicavel
+  quadrado.style.cursor = "pointer";
+
+  if (!quadrado.classList.contains("quadrado-jogo")) {
+    quadrado.addEventListener("click", () => {
+      window.location.href = "jogo.html";
+    });
+  }
+});
+</script>
+</body>
+</html>
+
+
+
+

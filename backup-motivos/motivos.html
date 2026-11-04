@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosso Filme ❤️</title>
+  <link rel="stylesheet" href="motivos.css">
+  <script src="motivos.js" defer></script>
+</head>
+<body>
+  <main id="abertura" class="abertura">
+    <section class="cartao">
+      <div class="coracao">❤️</div>
+      <p class="etiqueta">CAPÍTULO 02 · NOSSO AMOR</p>
+      <h1>Nosso pequeno <em>filme de amor</em></h1>
+      <p>
+        Existem milhares de motivos para amar você.
+        Hoje eu escolhi dez para te lembrar
+        o quanto você é especial para mim.
+      </p>
+      <button id="iniciar">Iniciar nosso filme ❤️</button>
+      <p class="dica">Uma história feita de amor e lembranças 🎵</p>
+    </section>
+  </main>
+
+  <main id="mural" class="mural escondido">
+    <header class="cabecalho">
+      <p class="etiqueta">10 MOTIVOS PARA TE AMAR</p>
+      <h2 id="frase-motivo"></h2>
+      <span id="contador">01 / 10</span>
+    </header>
+
+    <div id="fotos" class="fotos"></div>
+
+    <div class="controles">
+      <button id="pausar">Pausar ⏸</button>
+      <button id="pular">Ver créditos →</button>
+    </div>
+  </main>
+
+  <main id="creditos" class="creditos escondido">
+    <div id="fotos-creditos" class="fotos-creditos"></div>
+    <div class="sombra"></div>
+
+    <div id="texto-creditos" class="texto-creditos">
+      <p class="etiqueta">UM FILME SOBRE</p>
+      <h1>Eu & Você ❤️</h1>
+
+      <p class="etiqueta">ESTRELANDO</p>
+      <h2>Nós dois</h2>
+
+      <p class="etiqueta">TRILHA SONORA</p>
+      <h2>Temari — 7 Minutoz</h2>
+
+      <div class="declaracao">
+        <h2>Para o amor da minha vida...</h2>
+
+        <p>
+          Se um dia alguém me perguntasse qual foi a melhor
+          coisa que aconteceu na minha vida, eu não
+          precisaria pensar duas vezes.
+        </p>
+
+        <p>Foi encontrar você.</p>
+
+        <p>
+          Desde que você chegou, até os momentos mais
+          simples se tornaram especiais. Cada sorriso,
+          cada abraço e cada lembrança ao seu lado
+          são partes de uma história que eu nunca
+          quero que termine.
+        </p>
+
+        <p>
+          Talvez eu não consiga demonstrar todos os dias
+          o tamanho do meu amor, mas quero que você saiba
+          que, entre tantas possibilidades que a vida
+          poderia me oferecer, eu escolheria viver
+          essa história com você, mil vezes.
+        </p>
+
+        <p>
+          E o mais bonito de tudo é saber que ainda
+          temos tantas páginas para escrever juntos.
+        </p>
+
+        <h2 class="amor">EU TE AMO! ❤️</h2>
+        <h2 class="continua">CONTINUA... ♡</h2>
+      </div>
+    </div>
+
+    <div class="controles">
+      <button id="repetir">Assistir novamente ↻</button>
+      <a href="index.html">Voltar ao início ♡</a>
+    </div>
+  </main>
+
+  <audio id="musica" src="musicas/temari.mp3" preload="auto" loop></audio>
+
+  <div id="aviso-audio" class="aviso-audio escondido">
+    <p id="mensagem-audio"></p>
+    <button id="tentar-audio">Tentar tocar música 🎵</button>
+  </div>
+</body>
+</html>
