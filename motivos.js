@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const $ = (id) => document.getElementById(id);
 
   const abertura = $("abertura");
@@ -74,7 +74,7 @@
       })
       .catch((erro) => {
         mensagem.textContent =
-          "Não foi possível tocar a música. Confira musicas/temari.mp3.";
+          "Não foi possível tocar a música. Confira musicas/musica-nova.mp3.";
         aviso.classList.remove("escondido");
         console.error("Erro de áudio:", erro);
       });
@@ -264,7 +264,7 @@
   if (musica) {
     musica.addEventListener("error", () => {
       mensagem.textContent =
-        "O navegador não conseguiu carregar musicas/temari.mp3.";
+        "O navegador não conseguiu carregar musicas/musica-nova.mp3.";
       aviso.classList.remove("escondido");
     });
   }

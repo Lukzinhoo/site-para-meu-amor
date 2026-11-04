@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Verifica se o arquivo está disponível.
   musica.addEventListener("error", () => {
     console.error(
-      "Erro ao carregar: musicas/temari.mp3"
+      "Erro ao carregar: musicas/musica-nova.mp3"
     );
   });
 
