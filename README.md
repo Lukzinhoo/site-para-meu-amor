@@ -82,7 +82,7 @@ Não é necessário instalar bibliotecas ou dependências externas para executar
 
 **Repositório:** https://github.com/Lukzinhoo/site-para-meu-amor
 
-**Site:** Adicionar aqui o link definitivo da Vercel após a publicação.
+**Site:** https://site-para-meu-amor-7sj7dcsl6-neto-5a2b.vercel.app/
 
 ---
 
