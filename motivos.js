@@ -1,3 +1,4 @@
+﻿
 document.addEventListener("DOMContentLoaded", () => {
   const $ = (id) => document.getElementById(id);
 
@@ -8,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const musica = $("musica");
   const aviso = $("aviso-audio");
   const mensagem = $("mensagem-audio");
+  const textoCreditos = $("texto-creditos");
+  const botoesFinais = $("botoes-finais");
 
   const motivos = [
     "Porque seu sorriso ilumina meus dias. ❤️",
@@ -75,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((erro) => {
         mensagem.textContent =
           "Não foi possível tocar a música. Confira musicas/musica-nova.mp3.";
+
         aviso.classList.remove("escondido");
         console.error("Erro de áudio:", erro);
       });
@@ -87,8 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function agendar(tempo) {
     limparTimer();
+
     tempoRestante = tempo;
     inicioTimer = performance.now();
+
     timer = setTimeout(proximo, tempo);
   }
 
@@ -96,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fotos.querySelectorAll("video").forEach((video) => {
       video.pause();
     });
+
     videoAtual = null;
   }
 
@@ -107,30 +114,42 @@ document.addEventListener("DOMContentLoaded", () => {
     moldura.className = "polaroid";
 
     const largura = window.innerWidth <= 650 ? 34 : 17;
-    moldura.style.left = Math.min(x, 100 - largura) + "%";
+
+    moldura.style.left =
+      Math.min(x, 100 - largura) + "%";
+
     moldura.style.top = y + "%";
-    moldura.style.setProperty("--rot", rot + "deg");
+
+    moldura.style.setProperty(
+      "--rot",
+      rot + "deg"
+    );
 
     if (tipo === "foto") {
       const img = document.createElement("img");
+
       img.src = caminho;
       img.alt = "Uma lembrança nossa";
+
       moldura.appendChild(img);
     } else {
       const video = document.createElement("video");
+
       video.src = caminho;
       video.muted = true;
       video.playsInline = true;
       video.preload = "metadata";
+
       moldura.appendChild(video);
+
       videoAtual = video;
       video.play().catch(console.warn);
     }
 
     const legenda = document.createElement("span");
     legenda.textContent = "Nós dois ♡";
-    moldura.appendChild(legenda);
 
+    moldura.appendChild(legenda);
     fotos.appendChild(moldura);
   }
 
@@ -143,13 +162,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const numeroMotivo = Math.min(
-      Math.floor(indice * motivos.length / midias.length),
+      Math.floor(
+        indice * motivos.length / midias.length
+      ),
       motivos.length - 1
     );
 
-    $("frase-motivo").textContent = motivos[numeroMotivo];
+    $("frase-motivo").textContent =
+      motivos[numeroMotivo];
+
     $("contador").textContent =
-      String(numeroMotivo + 1).padStart(2, "0") + " / 10";
+      String(numeroMotivo + 1).padStart(2, "0") +
+      " / 10";
 
     if (videoAtual) {
       videoAtual.pause();
@@ -158,12 +182,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     adicionarMidia(midias[indice], indice);
 
-    const duracao = midias[indice][0] === "video"
-      ? 8000
-      : 5000;
+    const duracao =
+      midias[indice][0] === "video"
+        ? 8000
+        : 5000;
 
     indice++;
     agendar(duracao);
+  }
+
+  function esconderBotoesFinais() {
+    if (!botoesFinais) return;
+
+    botoesFinais.classList.remove("visiveis");
+  }
+
+  function mostrarBotoesFinais() {
+    if (!botoesFinais) return;
+
+    botoesFinais.classList.add("visiveis");
   }
 
   function iniciar() {
@@ -173,7 +210,12 @@ document.addEventListener("DOMContentLoaded", () => {
     indice = 0;
     pausado = false;
     emCreditos = false;
+
     fotos.innerHTML = "";
+
+    esconderBotoesFinais();
+
+    textoCreditos.classList.remove("rolando");
 
     abertura.classList.add("escondido");
     creditos.classList.add("escondido");
@@ -181,7 +223,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     $("pausar").textContent = "Pausar ⏸";
 
-    if (musica) musica.currentTime = 0;
+    if (musica) {
+      musica.currentTime = 0;
+    }
+
     tocarMusica();
     proximo();
   }
@@ -195,17 +240,24 @@ document.addEventListener("DOMContentLoaded", () => {
       if (timer !== null) {
         tempoRestante = Math.max(
           0,
-          tempoRestante - (performance.now() - inicioTimer)
+          tempoRestante -
+          (performance.now() - inicioTimer)
         );
       }
 
       limparTimer();
+
       if (musica) musica.pause();
       if (videoAtual) videoAtual.pause();
+
       $("pausar").textContent = "Continuar ▶";
     } else {
       tocarMusica();
-      if (videoAtual) videoAtual.play().catch(console.warn);
+
+      if (videoAtual) {
+        videoAtual.play().catch(console.warn);
+      }
+
       $("pausar").textContent = "Pausar ⏸";
       agendar(tempoRestante);
     }
@@ -221,8 +273,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       for (let i = 0; i < 3; i++) {
         const img = document.createElement("img");
-        img.src = "imagens/foto" + (coluna * 3 + i + 1) + ".png";
+
+        img.src =
+          "imagens/foto" +
+          (coluna * 3 + i + 1) +
+          ".png";
+
         img.alt = "Uma foto nossa";
+
         div.appendChild(img);
       }
 
@@ -234,37 +292,71 @@ document.addEventListener("DOMContentLoaded", () => {
     if (emCreditos) return;
 
     emCreditos = true;
+
     limparTimer();
     pararVideos();
+    esconderBotoesFinais();
 
     mural.classList.add("escondido");
     creditos.classList.remove("escondido");
 
     montarCreditos();
 
-    const texto = $("texto-creditos");
-    texto.classList.remove("rolando");
-    texto.style.setProperty(
+    textoCreditos.classList.remove("rolando");
+
+    textoCreditos.style.setProperty(
       "--altura",
-      (texto.scrollHeight + 100) + "px"
+      (textoCreditos.scrollHeight + 100) + "px"
     );
 
-    void texto.offsetWidth;
-    texto.classList.add("rolando");
+    void textoCreditos.offsetWidth;
 
-    if (musica && musica.paused) tocarMusica();
+    textoCreditos.classList.add("rolando");
+
+    if (musica && musica.paused) {
+      tocarMusica();
+    }
   }
 
+  // MOSTRA OS BOTÕES QUANDO OS CRÉDITOS TERMINAM
+  textoCreditos.addEventListener(
+    "animationend",
+    (evento) => {
+      if (
+        !emCreditos ||
+        evento.target !== textoCreditos
+      ) {
+        return;
+      }
+
+      mostrarBotoesFinais();
+    }
+  );
+
   $("iniciar").addEventListener("click", iniciar);
-  $("pausar").addEventListener("click", alternarPausa);
-  $("pular").addEventListener("click", iniciarCreditos);
+
+  $("pausar").addEventListener(
+    "click",
+    alternarPausa
+  );
+
+  $("pular").addEventListener(
+    "click",
+    iniciarCreditos
+  );
+
   $("repetir").addEventListener("click", iniciar);
-  $("tentar-audio").addEventListener("click", tocarMusica);
+
+  $("tentar-audio").addEventListener(
+    "click",
+    tocarMusica
+  );
 
   if (musica) {
     musica.addEventListener("error", () => {
       mensagem.textContent =
         "O navegador não conseguiu carregar musicas/musica-nova.mp3.";
+
       aviso.classList.remove("escondido");
     });
   }
